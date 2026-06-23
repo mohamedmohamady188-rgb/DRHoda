@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>مركز الهدى | للتخاطب والاستشارات التربوية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0F0E0C;
+  --bg2:#171512;
+  --gold:#D4AF37;
+  --gold2:#F3E5AB;
+  --gold-dim:rgba(212,175,55,0.1);
+  --gold-glow:rgba(212,175,55,0.2);
+  --text:#F5F4F0;
+  --text-dim:#A09C94;
+  --card:#1A1814;
+  --card2:#22201A;
+  --border:#2D2922;
+  --border-hover:#D4AF37;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  direction:rtl;
+  overflow-x:hidden;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* === NOISE TEXTURE === */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:0.4;
+}
+
+.container{max-width:1240px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* === NAVBAR === */
+.navbar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(15,14,12,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:16px 0;
+  transition:0.3s;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{
+  width:40px;height:40px;
+  background:var(--gold);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:900;color:#0F0E0C;
+}
+.logo-text{font-size:1.5rem;font-weight:900;color:var(--text)}
+.logo-text em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center;flex-wrap:wrap}
+.nav-links a{
+  color:var(--text-dim);text-decoration:none;font-weight:500;
+  padding:8px 14px;border-radius:10px;
+  transition:all 0.2s;font-size:0.95rem;
+}
+.nav-links a:hover{color:var(--gold);background:var(--gold-dim)}
+.mobile-toggle{display:none;font-size:1.6rem;cursor:pointer;color:var(--text);background:none;border:none}
+
+/* === BUTTONS === */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:50px;
+  font-weight:700;text-decoration:none;
+  font-family:'Cairo',sans-serif;
+  cursor:pointer;border:none;
+  transition:all 0.25s;font-size:1rem;
+}
+.btn-gold{background:var(--gold);color:#0F0E0C}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 40px var(--gold-glow)}
+.btn-outline{background:transparent;border:1.5px solid var(--gold);color:var(--gold)}
+.btn-outline:hover{background:var(--gold-dim);transform:translateY(-2px)}
+.btn-sm{padding:9px 20px;font-size:0.9rem}
+
+/* === SECTIONS === */
+section{padding:90px 0;position:relative}
+section + section{border-top:1px solid var(--border)}
+.section-label{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-dim);border:1px solid rgba(212,175,55,0.2);
+  color:var(--gold);border-radius:50px;
+  padding:6px 16px;font-size:0.82rem;font-weight:600;
+  margin-bottom:16px;
+}
+.section-title{font-size:2.4rem;font-weight:800;margin-bottom:14px;line-height:1.2}
+.section-title span{color:var(--gold)}
+.section-sub{color:var(--text-dim);font-size:1.05rem;max-width:560px;margin-bottom:48px}
+.center{text-align:center}
+.center .section-sub{margin:0 auto 48px}
+
+/* === HERO === */
+.hero{
+  padding:100px 0;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(212,175,55,0.06) 0%,transparent 70%);
+}
+.hero-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:48px;
+}
+.hero-content{
+  flex: 1;
+}
+.hero-image-wrapper{
+  flex-shrink: 0;
+}
+.dr-hero-img{
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 30px var(--gold-glow);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-dim);border:1px solid rgba(212,175,55,0.25);
+  color:var(--gold);border-radius:50px;
+  padding:7px 18px;font-size:0.85rem;font-weight:600;
+  margin-bottom:24px;
+}
+.hero h1{
+  font-size:3.4rem;font-weight:900;line-height:1.2;
+  margin-bottom:20px;
+}
+.hero h1 em{
+  color:var(--gold);font-style:normal;
+  text-shadow:0 0 40px rgba(212,175,55,0.2);
+}
+.hero-desc{
+  color:var(--text-dim);font-size:1.15rem;
+  margin-bottom:36px;
+  max-width:700px;
+}
+.hero-actions{
+  display:flex;gap:14px;flex-wrap:wrap;
+}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin-top:56px;
+  max-width:750px;
+}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:20px;text-align:center;
+  transition:0.2s;
+}
+.stat-card:hover{border-color:var(--gold);background:var(--card2)}
+.stat-num{font-size:2rem;font-weight:900;color:var(--gold);line-height:1}
+.stat-label{color:var(--text-dim);font-size:0.85rem;margin-top:4px}
+
+/* === CARDS === */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:28px;
+  transition:all 0.25s;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;
+  inset:0;border-radius:22px;
+  background:radial-gradient(circle at 20% 20%,var(--gold-dim),transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(212,175,55,0.5);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(212,175,55,0.1);
+}
+.card:hover::before{opacity:1}
+.card-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--gold-dim);border:1px solid rgba(212,175,55,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;color:var(--gold);
+  margin-bottom:20px;
+}
+.card h3{font-size:1.25rem;font-weight:700;margin-bottom:10px}
+.card p{color:var(--text-dim);font-size:0.95rem;line-height:1.7}
+.card .date{color:var(--text-dim);font-size:0.8rem;margin-bottom:10px;display:block}
+.card .read-more{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--gold);text-decoration:none;
+  font-weight:600;font-size:0.9rem;
+  margin-top:18px;
+  transition:gap 0.2s;
+}
+.card .read-more:hover{gap:10px}
+
+/* === SERVICES GRID === */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+
+/* === TEAM === */
+.team-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:32px;
+  transition:all 0.25s;text-align:center;
+}
+.team-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(212,175,55,0.5);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.team-avatar{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dim),rgba(212,175,55,0.05));
+  border:2px solid rgba(212,175,55,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;color:var(--gold);
+  margin:0 auto 20px;
+}
+.team-card h3{font-size:1.25rem;font-weight:700;margin-bottom:6px}
+.team-card .role{color:var(--gold);font-size:0.85rem;font-weight:600;margin-bottom:12px;display:block}
+.team-card p{color:var(--text-dim);font-size:0.9rem;line-height:1.6}
+
+/* === PARENTS SECTION === */
+#parents-corner{background:linear-gradient(135deg,var(--bg) 0%,#191612 100%)}
+
+/* === TIP CARD === */
+.tip-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:22px;padding:28px;
+  transition:all 0.25s;
+  border-right:4px solid var(--gold);
+}
+.tip-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,0.4)}
+.tip-card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.tip-card p{color:var(--text-dim);font-size:0.95rem;line-height:1.7}
+
+/* === CONTACT === */
+.contact-container{max-width:850px;margin:0 auto}
+.contact-info h2{font-size:2.2rem;font-weight:800;margin-bottom:16px}
+.contact-info p{color:var(--text-dim);margin-bottom:32px;font-size:1.05rem}
+.contact-items{display:flex;flex-direction:column;gap:16px}
+.contact-item{
+  display:flex;align-items:center;gap:16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:18px 20px;
+  text-decoration:none;color:var(--text);
+  transition:all 0.2s;
+}
+.contact-item:hover{border-color:var(--gold);transform:translateX(-4px)}
+.contact-item .ci-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--gold-dim);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
+}
+.contact-item .ci-text{flex:1}
+.contact-item .ci-text span{display:block;color:var(--text-dim);font-size:0.8rem;margin-bottom:2px}
+.contact-item .ci-text strong{font-size:1rem}
+
+/* === FOOTER === */
+footer{
+  background:#0A0908;
+  padding:60px 0 30px;
+  border-top:1px solid var(--border);
+}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{color:var(--text-dim);font-size:0.95rem;margin-top:12px;line-height:1.7;max-width:280px}
+.footer-social{display:flex;gap:10px;margin-top:20px}
+.social-btn{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-dim);text-decoration:none;
+  transition:all 0.2s;font-size:0.95rem;
+}
+.social-btn:hover{background:var(--gold-dim);color:var(--gold);border-color:rgba(212,175,55,0.3)}
+.footer-col h4{font-weight:700;margin-bottom:20px;color:var(--text)}
+.footer-col a{
+  display:flex;align-items:center;gap:8px;
+  color:var(--text-dim);text-decoration:none;
+  font-size:0.9rem;padding:7px 0;
+  transition:color 0.2s;
+}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:28px;border-top:1px solid var(--border);
+  flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{color:var(--text-dim);font-size:0.85rem}
+
+/* === RESPONSIVE === */
+@media(max-width:950px){
+  .hero-inner{flex-direction:column-reverse;text-align:center;gap:32px}
+  .hero-actions{justify-content:center}
+  .hero-stats{margin-left:auto;margin-right:auto}
+  .dr-hero-img{width:220px;height:220px}
+}
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .footer-brand p{max-width:100%}
+  .hero h1{font-size:2.4rem}
+}
+@media(max-width:760px){
+  .nav-links{
+    display:none;width:100%;
+    flex-direction:column;
+    background:var(--bg2);
+    border:1px solid var(--border);
+    border-radius:16px;padding:16px;margin-top:12px;
+    gap:4px;
+  }
+  .nav-links.open{display:flex}
+  .mobile-toggle{display:block}
+  .section-title{font-size:1.9rem}
+  .hero{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">
+      <div class="logo-icon"></div>
+      <span class="logo-text">مركز<em>الهدى</em></span>
+    </a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="قائمة">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#speech">خدماتنا</a></li>
+      <li><a href="#articles">مقالات واستشارات</a></li>
+      <li><a href="#parents-corner">ركن الأهل</a></li>
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#contact" class="btn btn-gold btn-sm">احجز جلسة</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <!-- الجزء الأيمن: نصوص وبيانات التحكم -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-star"></i> مركز متخصص في التخاطب والتنمية الفكرية
+        </div>
+        <h1>نساعد طفلك على <em>التواصل</em> ونمو قدراته الفكرية</h1>
+        <p class="hero-desc">تخاطب — تعديل سلوك — استشارات تربوية وأسرية متخصصة تحت إشراف طبي معتمد لتطوير مهارات طفلك.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-gold">ابدأ رحلة طفلك <i class="fas fa-arrow-left"></i></a>
+          <a href="#about" class="btn btn-outline">تعرف على المركز</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-num">+500</div>
+            <div class="stat-label">طفل مستفيد</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">ماجستير</div>
+            <div class="stat-label">كفاءة علمية</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- الجزء الأيسر: صورة الدكتورة بالمسار الجديد المحدث -->
+      <div class="hero-image-wrapper">
+        <img src="DSC_2880.jpg" alt="د. هدى المحمدي" class="dr-hero-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="speech">
+  <div class="container">
+    <div class="center">
+      <div class="section-label"><i class="fas fa-hand-holding-heart"></i> رعاية طبية متكاملة</div>
+      <h2 class="section-title">خدمات <span>التخاطب</span> والاستشارات</h2>
+      <p class="section-sub">رعاية متكاملة للطفل بتقييم دقيق وخطط تأهيلية مخصصة</p>
+    </div>
+    <div class="services-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-stethoscope"></i></div>
+        <h3>تقييم شامل ودقيق</h3>
+        <p>تحديد احتياجات الطفل الدقيقة عبر جلسة تقييم متكاملة واختبارات معتمدة للذكاء واللغة.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>برامج وتعديل سلوك</h3>
+        <p>برامج متخصصة لعلاج تأخر النطق، اللدغات، وصعوبات التعلم مع قياس دوري للتقدم والتطور.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-user-md"></i></div>
+        <h3>استشارات تربوية ونفسية</h3>
+        <p>جلسات إرشادية وتوجيهية للأهل لفهم سيكولوجية الطفل وكيفية توفير بيئة منزلية داعمة.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-laptop-house"></i></div>
+        <h3>جلسات واستشارات أونلاين</h3>
+        <p>خدمات استشارية وتأهيلية عن بعد بجودة عالية لجميع أنحاء العالم العربي دون عناء التنقل.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTICLES ============ -->
+<section id="articles">
+  <div class="container">
+    <div class="center">
+      <div class="section-label"><i class="fas fa-newspaper"></i> التوعية التربوية</div>
+      <h2 class="section-title">مقالات و<span>نصائح طبية</span></h2>
+      <p class="section-sub">دليلك العلمي والعملي لفهم طفلك ومساعدته على النمو اللغوي السليم</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-comments"></i></div>
+        <span class="date"><i class="far fa-calendar"></i> 15 مارس 2026</span>
+        <h3>تأخر النطق عند الأطفال: الأسباب ومتى يجب القلق؟</h3>
+        <p>يتأخر بعض الأطفال في الكلام نتيجة أسباب بيئية مثل الشاشات أو عضوية كربط اللسان. يجب استشارة المختص فوراً إذا بلغ الطفل عامين ولم ينطق كلمات مفردة واضحة للتعبير عن احتياجاته.</p>
+        <a href="#contact" class="read-more">احجز استشارة <i class="fas fa-arrow-left"></i></a>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-brain"></i></div>
+        <span class="date"><i class="far fa-calendar"></i> 10 مارس 2026</span>
+        <h3>العلامات المبكرة للتوحد وكيفية التعامل معها</h3>
+        <p>ضعف التواصل البصري، عدم الرد عند مناداته باسمه، والتكرار النمطي للحركات هي مؤشرات أولية. التدخل المبكر وجلسات التكامل الحسي والتخاطب تمنح الطفل فرصة ذهبية للاندماج الأكاديمي والاجتماعي.</p>
+        <a href="#contact" class="read-more">احجز استشارة <i class="fas fa-arrow-left"></i></a>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+        <span class="date"><i class="far fa-calendar"></i> 5 مارس 2026</span>
+        <h3>كيف تفرق بين صعوبات التعلم والبطء الدراسي؟</h3>
+        <p>صعوبات التعلم ترتبط بخلل في معالجة المعلومات (كالقراءة أو الحساب) رغم ذكاء الطفل الطبيعي، بينما بطء التعلم يرتبط بانخفاض في معامل الذكاء العام. تحديد التشخيص الصحيح يضمن وضع خطة تعليمية تناسبه.</p>
+        <a href="#contact" class="read-more">احجز استشارة <i class="fas fa-arrow-left"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARENTS CORNER ============ -->
+<section id="parents-corner">
+  <div class="container">
+    <div class="center">
+      <div class="section-label"><i class="fas fa-users"></i> الإرشاد الأسري</div>
+      <h2 class="section-title">ركن <span>الأهل</span></h2>
+      <p class="section-sub">توجيهات يومية تدعم وتكمل دور الجلسات التأهيلية داخل المنزل</p>
+    </div>
+    <div class="grid-3">
+      <div class="tip-card">
+        <h3><i class="fas fa-lightbulb" style="color:var(--gold)"></i> نصيحة تربوية هامة</h3>
+        <p>"ابتعدوا تماماً عن مقارنة وتيرة نمو طفلك اللغوي بغيره. المقارنة تبني حاجزاً نفسياً يزيد من صعوبة النطق لديه وتضعفه."</p>
+      </div>
+      <div class="tip-card">
+        <h3><i class="fas fa-tv" style="color:var(--gold)"></i> خطر الشاشات التفاعلية</h3>
+        <p>تعرض الطفل دون عامين للهواتف والتلفزيون يسبب "التوحد الافتراضي" وضعف الحصيلة اللغوية. استبدلوها بالحوار واللعب الحركي.</p>
+      </div>
+      <div class="tip-card">
+        <h3><i class="fas fa-heart" style="color:var(--gold)"></i> تعزيز التواصل الصحي</h3>
+        <p>تحدثوا مع أطفالكم بلغة واضحة وبطيئة. لا تقاطعوا الطفل أثناء محاولة الكلام، بل امنحوه الوقت ليشعر بالثقة والأمان التام.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT (TEAM) ============ -->
+<section id="about" style="background:var(--bg2)">
+  <div class="container">
+    <div class="center">
+      <div class="section-label"><i class="fas fa-info-circle"></i> الإدارة والخبرة</div>
+      <h2 class="section-title">إدارة <span>مركز الهدى</span></h2>
+      <p class="section-sub">كفاءة علمية وخبرة عملية تضمن تقديم أرقى مستويات الرعاية لطفلك</p>
+    </div>
+    <div style="max-width: 600px; margin: 0 auto;">
+      <div class="team-card">
+        <div class="team-avatar"><i class="fas fa-user-md"></i></div>
+        <h3>د. هدى المحمدي</h3>
+        <span class="role">أخصائية تخاطب وإعاقة وتعديل سلوك</span>
+        <p style="margin-bottom: 15px;">ماجستير علوم الإعاقة العقلية — جامعة المنصورة.<br>متخصصة في تأهيل حالات التوحد، متلازمة داون، تأخر النطق، وصعوبات التعلم الأكاديمية والنمائية بخبرة سنوات طويلة في خدمة الأطفال وعائلاتهم.</p>
+        <span class="tag" style="display: inline-block;">مديرة ومؤسسة مركز الهدى للتخاطب</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="center">
+          <div class="section-label"><i class="fas fa-envelope"></i> الحجز والاستعلام</div>
+          <h2>نحن هنا <span style="color:var(--gold)">لرعاية طفلك</span></h2>
+          <p>يسعدنا استقبال استفساراتكم وتحديد موعد لجلسة التقييم الأولى بمركزنا لتشخيص وتوجيه طفلك للمسار الصحيح.</p>
+        </div>
+        <div class="contact-items">
+          <a href="https://wa.me/201063980578" target="_blank" class="contact-item">
+            <div class="ci-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="ci-text">
+              <span>واتساب — تواصل فوري مباشر</span>
+              <strong>01063980578</strong>
+            </div>
+            <i class="fas fa-arrow-left" style="color:var(--text-dim)"></i>
+          </a>
+          <a href="tel:01063980578" class="contact-item">
+            <div class="ci-icon"><i class="fas fa-phone"></i></div>
+            <div class="ci-text">
+              <span>اتصال مباشر للهواتف</span>
+              <strong>01063980578</strong>
+            </div>
+            <i class="fas fa-arrow-left" style="color:var(--text-dim)"></i>
+          </a>
+          <div class="contact-item" style="cursor:default">
+            <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="ci-text">
+              <span>فروع مركز الهدى</span>
+              <strong>سوهاج — أشمون — المنوفية</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <div class="logo-icon">هـ</div>
+          <span class="logo-text">مركز<em>الهدى</em></span>
+        </a>
+        <p>منصة ومركز متخصص في تشخيص وتأهيل مشاكل التخاطب وتعديل السلوك وتنمية مهارات الأطفال بأحدث المعايير العلمية.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/201063980578" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <a href="#home">الرئيسية</a>
+        <a href="#speech">خدماتنا</a>
+        <a href="#articles">المقالات</a>
+        <a href="#parents-corner">ركن الأهل</a>
+      </div>
+      <div class="footer-col">
+        <h4>التواصل</h4>
+        <a href="tel:01063980578"><i class="fas fa-phone"></i> 01063980578</a>
+        <a href="#"><i class="fas fa-map-marker-alt"></i> سوهاج / المنوفية</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 مركز الهدى للتخاطب. جميع الحقوق محفوظة للدكتورة هدى المحمدي.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const mobileToggle = document.getElementById('mobileToggle');
+const navLinks = document.getElementById('navLinks');
+if(mobileToggle && navLinks) {
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+}
+</script>
+
+</body>
+</html>
